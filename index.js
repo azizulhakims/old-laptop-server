@@ -140,6 +140,15 @@ async function run() {
         })
 
 
+        app.get('/oldlaptopuser', async (req, res) => {
+
+            const oldlaptopuser = await oldLaptopCollection.find({}).toArray()
+            console.log(oldlaptopuser);
+
+            res.send(oldlaptopuser);
+        })
+
+
         // app.get('/addproduct', async (req, res) => {
         //     const query = {};
         //     const product = await oldLaptopAddProductCollection.find(query).toArray();

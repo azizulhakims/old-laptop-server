@@ -69,12 +69,12 @@ async function run() {
         //     res.send(result);
         // })
 
-        app.get('/addproduct', async (req, res) => {
-            const query = {};
-            const product = await oldLaptopAddProductCollection.find(query).toArray();
-            res.send(product);
+        // app.get('/addproduct', async (req, res) => {
+        //     const query = {};
+        //     const product = await oldLaptopAddProductCollection.find(query).toArray();
+        //     res.send(product);
 
-        })
+        // })
 
 
         app.post('/addproduct', async (req, res) => {
@@ -91,6 +91,21 @@ async function run() {
 
         })
 
+        app.get('/addproduct', async (req, res) => {
+            let query = {}
+            const email = req.query.email
+
+            if (email) {
+                query = {
+                    email: email,
+                }
+            }
+            const product = await oldLaptopAddProductCollection.find(query).toArray()
+            console.log(product);
+
+            res.send(product);
+        })
+
         // app.get('/oldLaptopCategory/:id', (req, res) => {
         //     const id = req.params.id;
         //     const selectedCategory = oldLaptopCollectionCategory.find(c => c._id === id);
@@ -105,13 +120,6 @@ async function run() {
             const result = await oldLaptopProductBookCollection.insertOne(productbook);
             res.send(result);
         })
-
-
-
-
-
-
-
 
         //for user
         // app.get('/productbook', async (req, res) => {
